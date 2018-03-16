@@ -6,6 +6,7 @@
       <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
       <link href="css/normalize.css" rel="stylesheet" type="text/css" />
       <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
       <link href="css/toggle-switch.css" rel="stylesheet" type="text/css" />
       <link href="css/main.css" rel="stylesheet" type="text/css" />
       <title>STATSEER</title>
@@ -28,6 +29,14 @@
 					</g>
 				</g>
 				</svg>
+				<div class="notifications">
+					<div class="notification-container">
+						<p>This is a notification.</p>
+					</div>
+					<div class="notification-container">
+						<p>This is a notification.</p>
+					</div>
+				</div>
   			</div>
   			<div class="profile-data clearfix">
   			<img src="img/trent.jpg" alt="" class="left" />
@@ -141,26 +150,32 @@
 	  		</div>
 
 	  		<!-- traffic chart -->
-	  		<div class="row gen-row chart">
-		  		<h2 class="t-fade-in" data-direct="left">Traffic</h2>
+	  		<div class="row gen-row chart traffic-chart">
+		  		<h2 class="t-fade-in sect-title lt-gray" data-direct="left">Traffic</h2>
+		  		<ul class="chart-nav t-fade-in" data-direct="right" data-delay=".5">
+		  			<li data-time="hour">Hourly</li>
+		  			<li data-time="day">Daily</li>
+		  			<li data-time="week">Weekly</li>
+		  			<li data-time="month">Monthly</li>
+		  		</ul>
 		  		<canvas id="traffic-chart" width="100%" height="50%" class="t-fade-in"></canvas>
 	  		</div>
 
 	  		<!-- pie and bar charts -->
 	  		<div class="row clearfix panel-row">
 	  			<div class="half chart t-fade-in panel-pad" data-direct="left">
-	  				<h2>DAILY TRAFFIC</h2>
+	  				<h2 class="sect-title lt-gray">DAILY TRAFFIC</h2>
 	  				<canvas id="traffic-bar-chart" width="100%" height="50%"></canvas>
 	  			</div>
 	  			<div class="half chart t-fade-in panel-pad" data-direct="right">
-	  				<h2>MOBILE USERS</h2>
+	  				<h2 class="sect-title lt-gray">MOBILE USERS</h2>
 	  				<canvas id="mobile-users-chart" width="100%" height="50%"></canvas>
 	  			</div>
 	  		</div>
 
 	  		<!-- social sect -->
 	  		<div class="gen-row row clearfix">
-		  		<h2 class="t-fade-in" data-direct="right">SOCIAL STATS</h2>
+		  		<h2 class="t-fade-in sect-title lt-gray" data-direct="right">SOCIAL STATS</h2>
 	  			<div class="one-third social-sect-wrap t-fade-in" data-direct="left">
 	  				<div class="social-sect lt-gray-bg clearfix twitter">
 	  					<div class="one-third-sm">
@@ -229,7 +244,7 @@
 	  		<!-- activity -->
 	  		<div class="row clearfix panel-row">
 	  			<div class="half activity-sect new-members panel-pad">
-	  				<h3 class="t-fade-in" data-direct="down">NEW MEMBERS</h3>
+	  				<h3 class="t-fade-in sect-title lt-gray" data-direct="down">NEW MEMBERS</h3>
 	  				<div class="member list-item clearfix t-fade-in" data-direct="left">
 	  					<div class="relative">
 		  					<div class="profile-thumbnail">
@@ -249,12 +264,12 @@
 	  				<div class="member list-item clearfix t-fade-in" data-direct="left">
 	  					<div class="relative">
 		  					<div class="profile-thumbnail">
-		  						<img src="img/profile-1.jpg" alt="" />
+		  						<img src="img/profile-2.jpg" alt="" />
 		  					</div>
 		  					<div class="description">
 		  						<div class="left">
-			  						<p>Victoria Chambers</p>
-			  						<a href="" class="blue">Victoria.chambers@example.com</a>
+			  						<p>Dale Byrd</p>
+			  						<a href="" class="blue">dale.byrd52@example.com</a>
 		  						</div>
 		  						<div class="right">
 		  							<p>10/15/18</p>
@@ -265,12 +280,12 @@
 	  				<div class="member list-item clearfix t-fade-in" data-direct="left">
 	  					<div class="relative">
 		  					<div class="profile-thumbnail">
-		  						<img src="img/profile-1.jpg" alt="" />
+		  						<img src="img/profile-3.jpg" alt="" />
 		  					</div>
 		  					<div class="description">
 		  						<div class="left">
-			  						<p>Victoria Chambers</p>
-			  						<a href="" class="blue">Victoria.chambers@example.com</a>
+			  						<p>Dawn Wood</p>
+			  						<a href="" class="blue">dawn.wood@example.com</a>
 		  						</div>
 		  						<div class="right">
 		  							<p>10/15/18</p>
@@ -281,12 +296,12 @@
 	  				<div class="member list-item clearfix t-fade-in" data-direct="left">
 	  					<div class="relative">
 		  					<div class="profile-thumbnail">
-		  						<img src="img/profile-1.jpg" alt="" />
+		  						<img src="img/profile-4.jpg" alt="" />
 		  					</div>
 		  					<div class="description">
 		  						<div class="left">
-			  						<p>Victoria Chambers</p>
-			  						<a href="" class="blue">Victoria.chambers@example.com</a>
+			  						<p>Dan Oliver</p>
+			  						<a href="" class="blue">dan.oliver@example.com</a>
 		  						</div>
 		  						<div class="right">
 		  							<p>10/15/18</p>
@@ -296,7 +311,7 @@
 	  				</div>
 	  			</div>
 	  			<div class="half activity-sect recent-activity panel-pad">
-	  				<h3 class="t-fade-in">RECENT ACTIVITY</h3>
+	  				<h3 class="t-fade-in sect-title lt-gray">RECENT ACTIVITY</h3>
 	  				<div class="member list-item clearfix t-fade-in" data-direct="right" data-dealy=".5 t-fade-in" data-direct="left">
 	  					<div class="relative">
 		  					<div class="profile-thumbnail">
@@ -316,12 +331,12 @@
 	  				<div class="member list-item clearfix t-fade-in" data-direct="right" data-dealy=".5 t-fade-in" data-direct="left">
 	  					<div class="relative">
 		  					<div class="profile-thumbnail">
-		  						<img src="img/profile-1.jpg" alt="" />
+		  						<img src="img/profile-2.jpg" alt="" />
 		  					</div>
 		  					<div class="description">
 		  						<div class="left">
-			  						<p>Victoria Chambers commented on YourApp's SEO Tips</p>
-			  						<p>4 Hours Ago</p>
+			  						<p>Dale Byrd commented on Facebook's Changes for 2016</p>
+			  						<p>5 Hours Ago</p>
 		  						</div>
 		  						<div class="right">
 		  							<i class="fa fa-chevron-right" aria-hidden="true"></i>
@@ -332,12 +347,12 @@
 	  				<div class="member list-item clearfix t-fade-in" data-direct="right" data-dealy=".5 t-fade-in" data-direct="left">
 	  					<div class="relative">
 		  					<div class="profile-thumbnail">
-		  						<img src="img/profile-1.jpg" alt="" />
+		  						<img src="img/profile-3.jpg" alt="" />
 		  					</div>
 		  					<div class="description">
 		  						<div class="left">
-			  						<p>Victoria Chambers commented on YourApp's SEO Tips</p>
-			  						<p>4 Hours Ago</p>
+			  						<p>Dawn Wood commented on Facebooks's Changes for 2016</p>
+			  						<p>5 Hours Ago</p>
 		  						</div>
 		  						<div class="right">
 		  							<i class="fa fa-chevron-right" aria-hidden="true"></i>
@@ -348,12 +363,12 @@
 	  				<div class="member list-item clearfix t-fade-in" data-direct="right" data-dealy=".5 t-fade-in" data-direct="left">
 	  					<div class="relative">
 		  					<div class="profile-thumbnail">
-		  						<img src="img/profile-1.jpg" alt="" />
+		  						<img src="img/profile-4.jpg" alt="" />
 		  					</div>
 		  					<div class="description">
 		  						<div class="left">
-			  						<p>Victoria Chambers commented on YourApp's SEO Tips</p>
-			  						<p>4 Hours Ago</p>
+			  						<p>Dan Oliver commented on YourApp's SEO Tips</p>
+			  						<p>1 Day Ago</p>
 		  						</div>
 		  						<div class="right">
 		  							<i class="fa fa-chevron-right" aria-hidden="true"></i>
@@ -366,15 +381,16 @@
 
 	  		<div class="row clearfix panel-row">
 	  			<div class="half message panel-pad">
-	  				<h4 class="t-fade-in" data-direct="left">MESSAGE USER</h4>
-	  				<form>
+	  				<h4 class="t-fade-in sect-title lt-gray" data-direct="left">MESSAGE USER</h4>
+	  				<form method="POST" action="">
 	  					<input type="text" name="user" placeholder="Search for User" class="gen-radius t-fade-in" data-direct="left">
+	  					<div class="user-preview-container"><div class="user-preview"></div></div>
 	  					<textarea name="userMessage" placeholder="Message for User" class="gen-radius t-fade-in" data-direct="left"></textarea>
 	  					<input type="submit" value="SEND" class="blue-bg white btn gen-radius t-fade-in" data-direct="left"></imput>
 	  				</form>
 	  			</div>
 	  			<div class="half settings panel-pad">
-	  				<h4 class="t-fade-in" data-direct="right" data-delay=".5">SETTINGS</h4>
+	  				<h4 class="t-fade-in sect-title lt-gray" data-direct="right" data-delay=".5">SETTINGS</h4>
 	  				<label class="switch-light switch-ios t-fade-in" data-direct="right" data-delay=".5" onclick="">
 					  <input type="checkbox">
 

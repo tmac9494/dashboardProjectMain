@@ -3,114 +3,125 @@ $(document).ready(function() {
 
 //chart js
 // ===============traffic chart(line)
-var myTrafficChart = new Chart($('#traffic-chart'), {
-	type: 'line',
-	data:  {
-		datasets: [{
-			data: [
-			{
-				t:"2018-3-16",
-				y: 250,
-			},
-			{
-				t:"2018-3-22",
-				y:750
-			}, {
-				t:"2018-3-29",
-				y:1250
-			}, {
-				t:"2018-4-3",
-				y:1000
-			}, {
-				t:"2018-4-9",
-				y:1500
-			}, {
-				t:"2018-4-16",
-				y:2000
-			}, {
-				t:"2018-4-23",
-				y:1500
-			}, {
-				t:"2018-4-26",
-				y:1750
-			}, {
-				t:"2018-5-3",
-				y:1250
-			}, {
-				t:"2018-5-10",
-				y:1750
-			}, {
-				t:"2018-5-17",
-				y:2250
-			}, {
-				t:"2018-5-24",
-				y:1750
-			}, {
-				t:"2018-5-31",
-				y:2250
+function createLineChart(time) {
+	var myTrafficChart = new Chart($('#traffic-chart'), {
+		type: 'line',
+		data:  {
+			datasets: [{
+				data: [
+				{
+					t:"2018-3-16",
+					y: 250,
+				},
+				{
+					t:"2018-3-22",
+					y:750
+				}, {
+					t:"2018-3-29",
+					y:1250
+				}, {
+					t:"2018-4-3",
+					y:1000
+				}, {
+					t:"2018-4-9",
+					y:1500
+				}, {
+					t:"2018-4-16",
+					y:2000
+				}, {
+					t:"2018-4-23",
+					y:1500
+				}, {
+					t:"2018-4-26",
+					y:1750
+				}, {
+					t:"2018-5-3",
+					y:1250
+				}, {
+					t:"2018-5-10",
+					y:1750
+				}, {
+					t:"2018-5-17",
+					y:2250
+				}, {
+					t:"2018-5-24",
+					y:1750
+				}, {
+					t:"2018-5-31",
+					y:2250
+				}],
 			}],
-		}],
-		// labels: ['16-22', '23-29', '30-5', '6-12', '13-19', '23', '26', '27-3', '4-10', '11-17', '18-24', '25-31'],
-	},
-    options: {
+			// labels: ['16-22', '23-29', '30-5', '6-12', '13-19', '23', '26', '27-3', '4-10', '11-17', '18-24', '25-31'],
+		},
+	    options: {
+	    	legend: {
+	    		display:false
+	    	},
+	    	elements: {
+	    		line: {
+	    			tension:0,
+	    			backgroundColor:'rgba(40,53,147,0.25)',
+	    			borderColor: 'rgba(40,53,147,0.95)',
+	    			borderWidth: '1px',
+	    		},
+	    		point: {
+	    			backgroundColor: '#fafafa',
+	    			borderColor: 'rgba(40,53,147,0.95)',
+	    			borderWidth: '2',
+	    			radius: '5',
+	    			hoverRadius: '7',
+	    		}
+	    	},
 
-    	elements: {
-    		line: {
-    			tension:0,
-    			backgroundColor:'rgba(40,53,147,0.25)',
-    			borderColor: 'rgba(40,53,147,0.95)',
-    			borderWidth: '1px',
-    		},
-    		point: {
-    			backgroundColor: '#fafafa',
-    			borderColor: 'rgba(40,53,147,0.95)',
-    			borderWidth: '2',
-    			radius: '5',
-    			hoverRadius: '7',
-    		}
-    	},
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero:true,
+	                    max:2750,
+	                    min:250,
+	                    // suggestedMin: 500,
+	                    stepSize: 500,
+	                    // callback: function(value, index, values) {
+	                    // 	if (value === 2750) {
+	                    // 		return '';
+	                    // 	} else {
+	                    // 		return value + 250;
+	                    // 	}
+	                    // },
 
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true,
-                    max:2750,
-                    min:250,
-                    // suggestedMin: 500,
-                    stepSize: 500,
-                    // callback: function(value, index, values) {
-                    // 	if (value === 2750) {
-                    // 		return '';
-                    // 	} else {
-                    // 		return value + 250;
-                    // 	}
-                    // },
+	                },
+	            }],
+	            xAxes: [{
+	            	type: 'time',
+	            	distribution: 'series',
+	            	time: {
+	            		unit: time,
+	                    // max: new Date("2018-5-31"),
+	                    // min: new Date("2018-3-16"),
+	                    displayFormats: {week:'M-D'},
+	                    bounds: 'data',
+	                    ticks: {
+	                    	source: 'data',
+	                    },
+	            	},
+	            }]
+	        }
+	    }
+	});
+}
+createLineChart('week');
 
-                },
-            }],
-            xAxes: [{
-            	type: 'time',
-            	distribution: 'series',
-            	time: {
-            		unit: 'week',
-                    // max: new Date("2018-5-31"),
-                    // min: new Date("2018-3-16"),
-                    displayFormats: {week:'M-D'},
-                    bounds: 'data',
-                    ticks: {
-                    	source: 'data',
-                    },
-            	},
-            }]
-        }
-    }
-});
-
-
+//chart nav
+$('.chart-nav li').click(function() {
+	$('#traffic-chart').remove();
+	$('.chart-nav').after('<canvas id="traffic-chart"></canvas>')
+	createLineChart($(this).attr('data-time'));
+})
 
 
 
 //=================daily traffic chart(bar)
+
 
 var myBarChart = new Chart($('#traffic-bar-chart'), {
 	type: 'bar',
@@ -141,16 +152,20 @@ var myBarChart = new Chart($('#traffic-bar-chart'), {
 				}
 			],
 			backgroundColor: '#3949AB',
+			radius: '5px',
 		}],
 
 	},
 	options: {
+		legend: {
+			display:false
+		},
 		scales: {
 			xAxes: [{
 				type: 'time',
 				time: {
 					unit: 'day',
-					displayFormats: {day:'ddd',},
+					displayFormats: {day:'dd',},
 				},
 				min: new Date('2018-3-11'),
 				max: new Date('2018-3-17'), 
@@ -196,6 +211,41 @@ var myPieChart = new Chart($('#mobile-users-chart'), {
 
 
 //---========================----main jS
+
+		//notifications
+		$('.notify').click(function() {
+			$('.notifications').slideToggle();
+		});
+
+		$users = ['Victoria Chambers', 'Dale Byrd', 'Dawn Wood', 'Dan Oliver'];
+		//form
+		$('.message input[type="text"]').keyup(function() {
+			$('.user-preview-usr').remove();
+			for (i = 0; i < $users.length; i += 1) {
+				if ($users[i].toLowerCase().indexOf($('.message input[type="text"]').val().toLowerCase()) >= 0) {
+					$('.user-preview').append('<div class="user-preview-usr"><p>'+ $users[i] +'</p></div>');
+				}
+			}
+		});
+		$('.user-preview-usr p').click(function() {
+			console.log('click');
+			$('.message input[type="text"]').val($(this).text());
+		});
+		$('.message input[type="submit"]').click(function(e) {
+			e.preventDefault();
+			if ($('.message input[type="text"]').val() === '') {
+				$('.user-error').hide();
+				$('.message input[type="text"]').after('<div class="error user-error"><p>This user does not exist.</p></div>');
+			} else if ($('.message textarea').val() === '') {
+				$('.user-error').hide();
+				$('.message-error').hide();
+				$('.message textarea').after('<div class="error message-error"><p>Please type a message.</p></div>');
+			} else {
+				//this is where i would write AJAX to send the form
+				$('.message form').hide();
+				$('.message .sect-title').after('<div class="success">Your message has been sent.</div>');
+			}
+		});
 		// alert 
 		$('.alert-exit').click(function() {
 			$(this).parent().parent().fadeOut();
@@ -279,7 +329,7 @@ var myPieChart = new Chart($('#mobile-users-chart'), {
 					} else {
 						//show if at bottom of page
 						if ($(this).attr('data-offset') <= $tWindowPosition || $(window).scrollTop() + $(window).height() == $(document).height()) {
-								$(this).css('animation','fade-'+ tFadeDirection(v) +' '+ tFadeSpeed(v) +' ease-out '+ tFadeDelay(v) +' forwards');
+								$(this).css('animation','fade-'+ tFadeDirection(v) +' '+ tFadeSpeed(v) +' ease-out forwards');
 						}
 					}
 			});
