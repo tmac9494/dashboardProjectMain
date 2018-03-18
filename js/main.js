@@ -216,10 +216,47 @@ var myPieChart = new Chart($('#mobile-users-chart'), {
 		$('.notify').click(function() {
 			$('.notifications').slideToggle();
 		});
+		//local storage
+		function toggleSwitch(storageItem) {
+			if (storageItem) {
+				storageItem = false;
+			} else {
+				storageItem = true;
+			}
+		}
+
+		$('.email-switcher').click(function() {
+			if (window.localStorage.email === 'true') {
+				window.localStorage.email = false;
+			} else {
+				localStorage.setItem('email', true);
+				window.localStorage.email = true;
+			}
+			console.log(localStorage);
+		});
+		$('.public-switcher').click(function() {
+			if (window.localStorage.public === 'true') {
+				window.localStorage.public = false;
+			} else {
+				localStorage.setItem('public', true);
+				window.localStorage.public = true;
+			}
+			console.log(localStorage);
+		});
+		$('select').click(function() {
+			localStorage.setItem('timeZone', $(this).val())
+		});
+		$(document).ready(function(){
+			if (window.localStorage.email === 'true') {$('.email-switcher').click();window.localStorage.email = true;}
+			if (window.localStorage.public === 'true') {$('.public-switcher').click();window.localStorage.public = true;}
+			if (window.localStorage.timeZone) {$('select').val(window.localStorage.timeZone)}
+		});
+
 
 		$users = ['Victoria Chambers', 'Dale Byrd', 'Dawn Wood', 'Dan Oliver'];
 		//form
 		$('.message input[type="text"]').keyup(function() {
+			$('.user-preview-container').show();
 			$('.user-preview-usr').remove();
 			for (i = 0; i < $users.length; i += 1) {
 				if ($users[i].toLowerCase().indexOf($('.message input[type="text"]').val().toLowerCase()) >= 0) {
@@ -227,13 +264,21 @@ var myPieChart = new Chart($('#mobile-users-chart'), {
 				}
 			}
 		});
-		$('.user-preview-usr p').click(function() {
-			console.log('click');
-			$('.message input[type="text"]').val($(this).text());
+		$('.user-preview').on('click','.user-preview-usr',function() {
+			$('.message input[type="text"]').val($(this).find('p').text());
+			$('.user-preview-container').hide();
 		});
+
+		function checkUsers() {
+			for (i = 0;i < $users.length;i += 1) {
+				if ($('.message input[type="text"]').val().toLowerCase() === $users[i].toLowerCase()) {
+					return true;
+				}
+			}
+		}
 		$('.message input[type="submit"]').click(function(e) {
 			e.preventDefault();
-			if ($('.message input[type="text"]').val() === '') {
+			if (!checkUsers()) {
 				$('.user-error').hide();
 				$('.message input[type="text"]').after('<div class="error user-error"><p>This user does not exist.</p></div>');
 			} else if ($('.message textarea').val() === '') {
@@ -243,7 +288,7 @@ var myPieChart = new Chart($('#mobile-users-chart'), {
 			} else {
 				//this is where i would write AJAX to send the form
 				$('.message form').hide();
-				$('.message .sect-title').after('<div class="success">Your message has been sent.</div>');
+				$('.message .sect-title').after('<div class="success"><p>Your message has been sent.</p></div>');
 			}
 		});
 		// alert 
